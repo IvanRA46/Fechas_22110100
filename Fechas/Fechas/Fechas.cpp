@@ -19,6 +19,8 @@ int main()
 			Date* d;
 			d = new Date(date);
 			d->Separar_Cad(date);
+			d->Dia_Desp();
+			cout << *d;
 			delete d;
 		}
 		else {
@@ -31,7 +33,7 @@ int main()
 int largo(string date) {
 	int valido, val;
 	val = date.size();
-	if (val <= 10) {
+	if (val == 10 ) {
 		return valido=1;
 	}
 	else {

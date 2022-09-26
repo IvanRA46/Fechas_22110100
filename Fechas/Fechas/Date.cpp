@@ -28,9 +28,9 @@ void Date::Separar_Cad(string date) {
 	} 
 	year = stoi(date);
 	
-	cout << "\nEl dia es:" << dia << "\n" << endl;
-	cout << "\nEl mes es:" << mes << "\n" << endl;
-	cout << "\nEl año es:" << year << "\n" << endl;
+	this->dia = dia;
+	this->mes = mes;
+	this->year = year;
 
 	 
 	Validar(dia, mes, year);
@@ -88,4 +88,33 @@ void Date::Validar(int dia, int mes, int year) {
 		cout << "\nLa fecha es valida\n";
 	}
 
+}
+
+Date::operator const char* () {
+	ostringstream formattedDate;
+	cout << "\nImpresion con operator: ";
+	formattedDate << dia << " / " << mes << " / " << year;
+	dateInString = formattedDate.str();
+	return dateInString.c_str();
+}
+
+void Date::Dia_Desp() {
+	dia++;
+	if (dia > 31) {
+		dia = 1;
+		mes++;
+		if (mes) {
+			mes = 1;
+			year++;	
+		}
+	}
+	else if (dia == 29 && mes == 2) {
+		dia = 1;
+		mes++;
+	}
+	else if (dia == 31 && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) {
+		dia = 1;
+		mes++;
+	}
+	cout << "\nEl dia siguiente es:" << dia << "/" << mes << "/" << year<<"\n";
 }
