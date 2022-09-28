@@ -80,6 +80,7 @@ void Date::Validar(int dia, int mes, int year) {
 		}
 	}
 
+	this->fact = fact;
 
 	if (fact == false) {
 		cout << "\nLa fecha es invalida\n";
@@ -91,30 +92,42 @@ void Date::Validar(int dia, int mes, int year) {
 }
 
 Date::operator const char* () {
-	ostringstream formattedDate;
-	cout << "\nImpresion con operator: ";
-	formattedDate << dia << " / " << mes << " / " << year;
-	dateInString = formattedDate.str();
-	return dateInString.c_str();
+	if (fact == true) {
+		ostringstream formattedDate;
+		cout << "\nImpresion con operator: ";
+		formattedDate << dia << " / " << mes << " / " << year;
+		dateInString = formattedDate.str();
+		return dateInString.c_str();
+	}
+	else {
+		
+		dateInString = "\n";
+		return dateInString.c_str();
+	}
 }
 
 void Date::Dia_Desp() {
-	dia++;
-	if (dia > 31) {
-		dia = 1;
-		mes++;
-		if (mes) {
-			mes = 1;
-			year++;	
+	if (fact == true) {
+		dia++;
+		if (dia > 31) {
+			dia = 1;
+			mes++;
+			if (mes) {
+				mes = 1;
+				year++;
+			}
+		}
+		else if (dia >= 29 && mes == 2) {
+			dia = 1;
+			mes++;
+		}
+		else if (dia == 31 && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) {
+			dia = 1;
+			mes++;
 		}
 	}
-	else if (dia == 29 && mes == 2) {
-		dia = 1;
-		mes++;
+	else {
+		cout << dia << " / " << mes << " / " << year;
 	}
-	else if (dia == 31 && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) {
-		dia = 1;
-		mes++;
-	}
-	cout << "\nEl dia siguiente es:" << dia << "/" << mes << "/" << year<<"\n";
+	
 }

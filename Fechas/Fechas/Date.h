@@ -13,6 +13,7 @@ private:
 	int dia;
 	int mes;
 	int year;
+	bool fact;
 	string dateInString;
 public:
 	Date(string);
